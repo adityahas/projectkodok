@@ -13,13 +13,6 @@ var current_scene_obj
 func _ready():
 	set_fixed_process(true)
 
-func _fixed_process(delta):
-	if is_changing:
-		print("changing scene")
-
-func _exit_tree():
-	pass
-
 func change_scene(scene_path):
 	if scene_path == null:
 		return
@@ -61,6 +54,13 @@ func change_scene(scene_path):
 	scene_next = scene_path
 	scene_prev = scene_current
 	scene_current = scene_next
+
+
+func _fixed_process(delta):
+	pass
+
+func _exit_tree():
+	pass
 
 func get_scene_current():
 	return scene_current

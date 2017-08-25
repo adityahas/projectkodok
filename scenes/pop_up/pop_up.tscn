@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scenes/pop_up/pop_up.gd" type="Script" id=1]
 [ext_resource path="res://assets/popup_frame_9patch.png" type="Texture" id=2]
+[ext_resource path="res://assets/themes/label_med_theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/themes/button_theme.tres" type="Theme" id=4]
 
 [node name="pop_up" type="Control"]
 
@@ -73,6 +75,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
+theme/theme = ExtResource( 3 )
 margin/left = 50.0
 margin/top = 40.0
 margin/right = 536.0
@@ -91,6 +94,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+theme/theme = ExtResource( 4 )
 margin/left = 160.0
 margin/top = 400.0
 margin/right = 284.0
@@ -107,6 +111,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+theme/theme = ExtResource( 4 )
 margin/left = 300.0
 margin/top = 400.0
 margin/right = 424.0

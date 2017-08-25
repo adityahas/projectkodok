@@ -12,22 +12,6 @@ script/script = ExtResource( 1 )
 transform/pos = Vector2( 363.58, 640.044 )
 texture = ExtResource( 2 )
 
-[node name="Button" type="Button" parent="splash_bg"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 232.0
-margin/bottom = 96.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Ayeee"
-flat = false
-
 [node name="timer" type="Timer" parent="."]
 
 process_mode = 1
