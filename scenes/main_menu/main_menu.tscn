@@ -54,4 +54,6 @@ flat = false
 
 [connection signal="button_up" from="btn_setting" to="." method="_on_btn_setting_button_up"]
 
+[connection signal="button_up" from="btn_play" to="." method="_on_btn_play_button_up"]
+
 

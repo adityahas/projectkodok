@@ -8,3 +8,7 @@ func _fixed_process(delta):
 
 func _on_btn_setting_button_up():
 	scene_manager.change_scene(game.SCENE_SETTING)
+
+
+func _on_btn_play_button_up():
+	scene_manager.change_scene(game.SCENE_ACTION_PHASE)

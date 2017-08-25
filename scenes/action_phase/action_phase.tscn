@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/action_phase/tilemap.tscn" type="PackedScene" id=1]
+
+[node name="action_phase" type="Node"]
+
+[node name="tilemap" parent="." instance=ExtResource( 1 )]
+
+
