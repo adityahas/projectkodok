@@ -1,44 +1,44 @@
 extends CanvasLayer
 
-signal scene_changed
 signal scene_enter
 signal scene_exit
+signal scene_changed
 var is_changing = false
 
 var scene_current = game.SCENE_SPLASH
 var scene_prev
 var scene_next
+var current_scene_obj
 
 func _ready():
-	connect("scene_changed", self, "_on_scene_changed")
-	pass
+	set_fixed_process(true)
 
-func _on_scene_changed():
+func _fixed_process(delta):
+	if is_changing:
+		print("changing scene")
+
+func _exit_tree():
 	pass
 
 func change_scene(scene_path):
-	if scene_path == null: return
-	if is_changing: return
+	if scene_path == null:
+		return
+	if is_changing:
+		return
 
-	get_tree().get_root().set_disable_input(true)
-	emit_signal("scene_exit")
-
-	scene_next = scene_path
 	is_changing = true
 
+	get_tree().get_root().set_disable_input(true)
+
+	emit_signal("scene_exit")
+
 	#add fade out to black
-	var packed_scene_fade = ResourceLoader.load(game.SCENE_FADE).instance()
-	get_tree().get_root().add_child(packed_scene_fade)
-	packed_scene_fade.get_node("anim").play("fade_out")
-	yield(packed_scene_fade.get_node("anim"), "finished")
+	get_node("anim").play("fade_in")
+	yield(get_node("anim"), "finished")
 
 	# Load new scene
-	var packed_scene = ResourceLoader.load(scene_next)
+	var packed_scene = ResourceLoader.load(scene_path)
 	var instanced_scene = packed_scene.instance()
-
-	#add fade in to scene
-	instanced_scene.add_child(packed_scene_fade)
-	packed_scene_fade.get_node("anim").play("fade_in")
 
 	# Immediately free the current scene, there is no risk here.
 	get_tree().get_current_scene().free()
@@ -50,13 +50,17 @@ func change_scene(scene_path):
 	get_tree().set_current_scene(instanced_scene)
 	emit_signal("scene_changed")
 
-	yield(packed_scene_fade.get_node("anim"), "finished")
-	packed_scene_fade.queue_free()
+	get_tree().get_root().set_disable_input(false)
 
+	if get_tree().get_current_scene() != null:
+		#add fade in to scene
+		get_node("anim").play("fade_out")
+		yield(get_node("anim"), "finished")
+
+	is_changing = false
+	scene_next = scene_path
 	scene_prev = scene_current
 	scene_current = scene_next
-	is_changing = false
-	get_tree().get_root().set_disable_input(false)
 
 func get_scene_current():
 	return scene_current
