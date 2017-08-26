@@ -10,4 +10,4 @@ func _ready():
 	pass
 
 func _on_timer_timeout():
-	scene_manager.change_scene(game.SCENE_MAIN_MENU)
+	scene_manager.change_scene_to(game.SCENE_MAIN_MENU)

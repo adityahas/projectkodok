@@ -4,16 +4,28 @@ signal scene_enter
 signal scene_exit
 signal scene_changed
 var is_changing = false
-
 var scene_current = game.SCENE_SPLASH
 var scene_prev
 var scene_next
-var current_scene_obj
+var scene_stack = []
 
 func _ready():
 	set_fixed_process(true)
 
-func change_scene(scene_path):
+func change_scene_back():
+	if is_changing:
+		return
+	if scene_stack.size() > 1:
+		scene_stack.pop_back()
+		_change_scene(scene_stack[scene_stack.size() - 1])
+
+func change_scene_to(scene_path):
+	if is_changing:
+		return
+	scene_stack.append(scene_path)
+	_change_scene(scene_path)
+
+func _change_scene(scene_path):
 	if scene_path == null:
 		return
 	if is_changing:

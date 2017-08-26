@@ -30,7 +30,7 @@ func update_input():
 		if Input.is_key_pressed(KEY_Q):
 			get_tree().quit()
 		if Input.is_key_pressed(KEY_W):
-			scene_manager.change_scene(scene_manager.scene_prev)
+			scene_manager.change_scene_back()
 
 
 func handle_exit_notification(what):
