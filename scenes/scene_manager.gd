@@ -4,9 +4,8 @@ signal scene_enter
 signal scene_exit
 signal scene_changed
 var is_changing = false
-var scene_current = game.SCENE_SPLASH
-var scene_prev
-var scene_next
+var scene_current setget set_pv_scene_current,get_scene_current
+var scene_prev setget set_pv_scene_prev,get_scene_prev
 var scene_stack = []
 
 func _ready():
@@ -18,12 +17,21 @@ func change_scene_back():
 	if scene_stack.size() > 1:
 		scene_stack.pop_back()
 		_change_scene(scene_stack[scene_stack.size() - 1])
+	_update_scene_var()
 
 func change_scene_to(scene_path):
 	if is_changing:
 		return
 	scene_stack.append(scene_path)
 	_change_scene(scene_path)
+	_update_scene_var()
+
+func _update_scene_var():
+	scene_current = scene_stack[scene_stack.size() - 1]
+	if scene_stack.size() == 1:
+		scene_prev = scene_stack[0]
+	else:
+		scene_prev = scene_stack[scene_stack.size() - 2]
 
 func _change_scene(scene_path):
 	if scene_path == null:
@@ -63,9 +71,6 @@ func _change_scene(scene_path):
 		yield(get_node("anim"), "finished")
 
 	is_changing = false
-	scene_next = scene_path
-	scene_prev = scene_current
-	scene_current = scene_next
 
 
 func _fixed_process(delta):
@@ -77,8 +82,11 @@ func _exit_tree():
 func get_scene_current():
 	return scene_current
 
-func get_scene_next():
-	return scene_next
-
 func get_scene_prev():
 	return scene_prev
+
+func set_pv_scene_current(var val):
+	pass
+
+func set_pv_scene_prev(var val):
+	pass

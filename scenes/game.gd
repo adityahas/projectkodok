@@ -38,7 +38,7 @@ func handle_exit_notification(what):
 		if scene_manager.scene_current == game.SCENE_MAIN_MENU:
 			emit_signal("show_exit_confirmation")
 		else:
-			scene_manager.change_scene(scene_manager.scene_prev)
+			scene_manager.change_scene_back()
 
 func _show_exit_confirmation():
 	if !show_exit_confirmation:
