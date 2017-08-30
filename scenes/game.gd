@@ -42,7 +42,7 @@ func handle_exit_notification(what):
 
 func _show_exit_confirmation():
 	if !show_exit_confirmation:
-		var scene = load(game.SCENE_POP_UP)
+		var scene = load(game.SCENE_POP_UP_EXIT_GAME)
 		var node = scene.instance()
 		get_tree().get_current_scene().add_child(node)
 		show_exit_confirmation = true

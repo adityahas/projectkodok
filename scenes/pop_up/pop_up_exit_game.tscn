@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://scenes/pop_up/pop_up.gd" type="Script" id=1]
+[ext_resource path="res://scenes/pop_up/pop_up_exit_game.gd" type="Script" id=1]
 [ext_resource path="res://assets/popup_frame_9patch.png" type="Texture" id=2]
 [ext_resource path="res://assets/themes/label_med_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/themes/button_theme.tres" type="Theme" id=4]
