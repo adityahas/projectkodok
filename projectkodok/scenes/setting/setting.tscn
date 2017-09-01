@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/_generic/main_menu_bg.tscn" type="PackedScene" id=1]
+
+[node name="setting" type="Node"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 1 )]
+
+layer = -1
+
+
