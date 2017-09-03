@@ -46,15 +46,16 @@ func _change_scene(scene_path):
 	emit_signal("scene_exit")
 
 	#add fade out to black
-	get_node("anim").play("fade_in")
-	yield(get_node("anim"), "finished")
+	if get_node("anim") != null:
+		get_node("anim").play("fade_in")
+		yield(get_node("anim"), "finished")
 
 	# Load new scene
 	var packed_scene = ResourceLoader.load(scene_path)
 	var instanced_scene = packed_scene.instance()
 
 	# Immediately free the current scene, there is no risk here.
-	get_tree().get_current_scene().free()
+	get_tree().get_current_scene().queue_free()
 
 	# Add it to the scene tree, as direct child of root
 	get_tree().get_root().add_child(instanced_scene)
@@ -67,11 +68,29 @@ func _change_scene(scene_path):
 
 	if get_tree().get_current_scene() != null:
 		#add fade in to scene
-		get_node("anim").play("fade_out")
-		yield(get_node("anim"), "finished")
+		if get_node("anim") != null:
+			get_node("anim").play("fade_out")
+			yield(get_node("anim"), "finished")
 
 	is_changing = false
 
+func play_exit_scene():
+	if get_tree().get_current_scene() != null:
+		if get_tree().get_current_scene().get_node("cnt_center/cnt_main/anim") != null:
+			get_tree().get_current_scene().get_node("cnt_center/cnt_main/anim").play("exit")
+			yield(get_tree().get_current_scene().get_node("cnt_center/cnt_main/anim"), "finished")
+
+func append_scene(scene_path, node):
+	var packed_scene = ResourceLoader.load(scene_path)
+	var instanced_scene = packed_scene.instance()
+	node.add_child(instanced_scene)
+
+func remove_scene(node):
+	if node != null:
+		if node.get_node("cnt_center/cnt_main/anim") != null:
+			node.get_node("cnt_center/cnt_main/anim").play("exit")
+			yield(node.get_node("cnt_center/cnt_main/anim"), "finished")
+		node.queue_free()
 
 func _fixed_process(delta):
 	pass

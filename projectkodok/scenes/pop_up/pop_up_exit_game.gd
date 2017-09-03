@@ -8,4 +8,4 @@ func _on_btn_yes_button_up():
 
 func _on_btn_no_button_up():
 	game.show_exit_confirmation = false
-	queue_free()
+	scene_manager.remove_scene(get_node("."))

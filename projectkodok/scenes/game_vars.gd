@@ -1,9 +1,11 @@
 extends Node
 
-############################### for global usage
+############################### global usage
 var enable_music = true
 var enable_sfx = true
+############################### end of global usage
 
+const SCENE_DRAFT_CENTER ="res://scenes/draft_scene_center.tscn"
 const SCENE_FADE ="res://scenes/_generic/scene_fade.tscn"
 const SCENE_SPLASH = "res://scenes/splash/splash.tscn"
 const SCENE_MAIN_MENU = "res://scenes/main_menu/main_menu.tscn"
